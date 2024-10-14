@@ -93,22 +93,10 @@ export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
   }
   
   constructor() {
-    super();
-    this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
-    this.registerLocalization({
-      context: this,
-      localesPath:
-        new URL("./locales/un-sdg.ar.json", import.meta.url).href +
-        "/../",
-      locales: ["ar", "es", "hi", "zh"],
-    });
+    
 
     //Constructors for un-svg app
+    super();
     this.goal = '1';
     this.label = '';
     this.alt = '';

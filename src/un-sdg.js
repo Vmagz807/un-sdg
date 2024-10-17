@@ -94,7 +94,6 @@ export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
   
   constructor() {
     
-
     //Constructors for un-svg app
     super();
     this.goal = '1';
@@ -102,7 +101,6 @@ export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
     this.alt = '';
     this.colorOnly = false;
     this._currentSrc = '';
-    this._currentColor = '';
   }
 
   // All properties for app
@@ -110,11 +108,10 @@ export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
     return {
       goal: { type: String, reflect: true },
       label: { type: String },
-      colorOnly: { type: Boolean, attribute: 'color-only', reflect: true },
+      colorOnly: { type: Boolean, attribute: 
+      'color-only', reflect: true },
       _currentSrc: { type: String },
-      _currentColor: { type: String},
       alt: { type: String },
-      title: { type: String },
     };
   }
 
@@ -123,7 +120,7 @@ export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
     return css`
       :host {
         display: inline-block;
-        margin:10px;
+        margin: 10px;
         width: 254px;
         height: 254px;
       }
@@ -131,14 +128,12 @@ export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
         width: 100%;
         height: 100%;
       }
-      .color-background{
+      
+      
+      .color-only{
         width: 100%;
         height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
       }
-      
     `;
   }
 
@@ -158,7 +153,6 @@ export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
       //Sets img src for 'all' and changes alt text and name accordingly
       this._currentSrc = new URL(`../lib/svgs/goal-all.svg`, import.meta.url).href;
       this.alt = 'All Sustainable Development Goals';
-      this._currentColor = '';
     }
 
     //Checks if goal is circle
@@ -167,7 +161,6 @@ export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
       //Sets img src for 'circle' and changes alt text and name accordingly
       this._currentSrc = new URL('../lib/svgs/goal-circle.svg', import.meta.url).href;
       this.alt = 'Sustainable Development Goals Circle';
-      this._currentColor = '';
     }
 
     //Checks for other possibilities
@@ -182,7 +175,6 @@ export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
         //sets img source for specified goal and changes alt text with goal number and name
         this._currentSrc = new URL(`../lib/svgs/goal-${goalNumber}.svg`, import.meta.url).href;
         this.alt = `Goal ${goalNumber}: ${goalData[goalNumber-1].name}`;
-        this._currentColor = goalData[goalNumber -1].color;
       }
     }
   }
@@ -190,16 +182,26 @@ export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
 
-    //Rendering image with background-color
-    return html`
-        <img
-          src="${this._currentSrc}"
-          alt="${this.label || this.alt}"
-          loading="lazy"
-          fetchpriority="low"
-        />
-      `;
+    //Rendering background color for changed goal
+    if (this.colorOnly) {
+      const goalNumber = parseInt(this.goal);
+
+      if (goalNumber >= 1 && goalNumber <= 17) {
+        const color = goalData[goalNumber - 1].color;
+        return html`<div class="color-only" style="background-color: ${color};"></div>`;
+      }
     }
+
+    //Rendering all images
+    return html`
+    <img
+      src="${this._currentSrc}"
+      alt="${this.label || this.alt}"
+      loading="lazy"
+      fetchpriority="low"
+    />
+  `;
+  }
 
   /**
    * haxProperties integration via file reference

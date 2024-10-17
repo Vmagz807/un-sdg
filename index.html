@@ -77,10 +77,7 @@
     <button>Change Goal</button>
 
     <script>
-
-      //Getting the app container
       const app = document.querySelector('#app');
-
       // Create all 17 goals + circle and "all"
       for (let i = 1; i <= 17; i++) {
         const sdg = document.createElement('un-sdg');
@@ -88,12 +85,10 @@
         app.appendChild(sdg);
       }
 
-      //Creating circle SDG
       const circleSDG = document.createElement('un-sdg');
       circleSDG.goal = 'circle';
       app.appendChild(circleSDG);
 
-      //Creating 'All' SDG
       const allSDG = document.createElement('un-sdg');
       allSDG.goal = 'all';
       app.appendChild(allSDG);
@@ -111,6 +106,7 @@
         const randomGoal = Math.floor(Math.random() * 17) + 1;
         lastSDG.goal = randomGoal.toString();
       });
+      
     </script>
   </body>
 </html>

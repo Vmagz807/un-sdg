@@ -13,77 +13,25 @@ import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
  * @element un-sdg
  */
 
-//All Svg Images and other data
+//goalData sets the count for colorOnly boolean
 const goalData = [
-  {
-    name: 'No Poverty',
-    color: '#e5243b',
-    image: new URL('../lib/svgs/goal-1.svg', import.meta.url).href,
-  },
-  { name: 'Zero Hunger', 
-    color: '#dda63a',
-    image: new URL('../lib/svgs/goal-2.svg', import.meta.url).href,
-  },
-  { name: 'Good Health and Well-being', 
-    color: '#4c9f38', 
-    image: new URL('../lib/svgs/goal-3.svg', import.meta.url).href,
-  },
-  { name: 'Quality Education', 
-    color: '#c5192d',
-    image: new URL('../lib/svgs/goal-4.svg', import.meta.url).href,
-  },
-  { name: 'Gender Equality', 
-    color: '#ff3a21',
-    image: new URL('../lib/svgs/goal-5.svg', import.meta.url).href,
-  },
-  { name: 'Clean Water and Sanitation', 
-    color: '#26bde2',
-    image: new URL('../lib/svgs/goal-6.svg', import.meta.url).href,
-  },
-  { name: 'Affordable and Clean Energy', 
-    color: '#fcc30b',
-    image: new URL('../lib/svgs/goal-7.svg', import.meta.url).href,
-  },
-  { name: 'Decent Work and Economic Growth', 
-    color: '#a21942',
-    image: new URL('../lib/svgs/goal-8.svg', import.meta.url).href,
-  },
-  { name: 'Industry, Innovation and Infrastructure', 
-    color: '#fd6925',
-    image: new URL('../lib/svgs/goal-9.svg', import.meta.url).href,
-  },
-  { name: 'Reduced Inequalities', 
-    color: '#dd1367',
-    image: new URL('../lib/svgs/goal-10.svg', import.meta.url).href,
-  },
-  { name: 'Sustainable Cities and Communities', 
-    color: '#fd9d24',
-    image: new URL('../lib/svgs/goal-11.svg', import.meta.url).href,
-  },
-  { name: 'Responsible Consumption and Production', 
-    color: '#bf8b2e',
-    image: new URL('../lib/svgs/goal-12.svg', import.meta.url).href,
-  },
-  { name: 'Climate Action', 
-    color: '#3f7e44',
-    image: new URL('../lib/svgs/goal-13.svg', import.meta.url).href,
-  },
-  { name: 'Life Below Water', 
-    color: '#0a97d9',
-    image: new URL('../lib/svgs/goal-14.svg', import.meta.url).href,
-  },
-  { name: 'Life on Land', 
-    color: '#56c02b',
-    image: new URL('../lib/svgs/goal-15.svg', import.meta.url).href,
-  },
-  { name: 'Peace, Justice and Strong Institutions', 
-    color: '#00689d',
-    image: new URL('../lib/svgs/goal-16.svg', import.meta.url).href,
-  },
-  { name: 'Partnerships for the Goals', 
-    color: '#19486a',
-    image: new URL('../lib/svgs/goal-17.svg', import.meta.url).href,
-  },
+  {name: 'No Poverty'},
+  {name: 'Zero Hunger'},
+  {name: 'Good Health and Well-being'},
+  {name: 'Quality Education'},
+  {name: 'Gender Equality'},
+  {name: 'Clean Water and Sanitation'},
+  {name: 'Affordable and Clean Energy'},
+  {name: 'Decent Work and Economic Growth'},
+  {name: 'Industry, Innovation and Infrastructure'},
+  {name: 'Reduced Inequalities'},
+  {name: 'Sustainable Cities and Communities' },
+  {name: 'Responsible Consumption and Production'},
+  {name: 'Climate Action'},
+  {name: 'Life Below Water'},
+  {name: 'Life on Land'},
+  {name: 'Peace, Justice and Strong Institutions'},
+  {name: 'Partnerships for the Goals'}
 ];
 
 export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
@@ -128,7 +76,6 @@ export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
         width: 100%;
         height: 100%;
       }
-      
       
       .color-only{
         width: 100%;
@@ -188,7 +135,7 @@ export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
 
       if (goalNumber >= 1 && goalNumber <= 17) {
         const color = goalData[goalNumber - 1].color;
-        return html`<div class="color-only" style="background-color: ${color};"></div>`;
+        return html`<div class="color-only" style="background-color: var(--un-sdg-goal-${goalNumber});"></div>`;
       }
     }
 

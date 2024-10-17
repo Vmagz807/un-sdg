@@ -123,15 +123,13 @@ export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
     return css`
       :host {
         display: inline-block;
+        margin:10px;
         width: 254px;
         height: 254px;
       }
       img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
-        position: relative;
-        z-index: 1;
       }
       .color-background{
         width: 100%;
@@ -140,6 +138,7 @@ export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
         top: 0;
         left: 0;
       }
+      
     `;
   }
 

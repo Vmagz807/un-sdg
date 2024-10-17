@@ -68,7 +68,7 @@ export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
     return css`
       :host {
         display: inline-block;
-        margin: 10px;
+        margin: 8px;
         width: 254px;
         height: 254px;
       }

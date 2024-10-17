@@ -193,7 +193,6 @@ export class unSdg extends DDDSuper(I18NMixin(LitElement)) {
 
     //Rendering image with background-color
     return html`
-      ${this._currentColor ? html`<div class="color-background" style="background-color: ${this._currentColor};"></div>` : ''}
         <img
           src="${this._currentSrc}"
           alt="${this.label || this.alt}"
